@@ -28,7 +28,7 @@ public abstract class ContactController {
       if(!newPassword1.equals(newPassword2)) { 
           return "nomatch"; 
       }
-      MessageDigest md = MessageDigest.getInstance("MD5");
+      MessageDigest md = MessageDigest.getInstance("SHA-256");
       byte[] b = md.digest(newPassword.getBytes("UTF-8"));
       String hexMd5 = toHexString(b);
       return userDao.updatePassword(getContext(), hexMd5);
