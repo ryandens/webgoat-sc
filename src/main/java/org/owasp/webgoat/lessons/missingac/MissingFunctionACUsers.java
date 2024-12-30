@@ -33,15 +33,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.owasp.webgoat.container.CurrentUsername;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 /** Created by jason on 1/5/17. */
-@Controller
+@RestController
 @AllArgsConstructor
 @Slf4j
 public class MissingFunctionACUsers {
@@ -68,7 +67,6 @@ public class MissingFunctionACUsers {
   @GetMapping(
       path = {"access-control/users"},
       consumes = "application/json")
-  @ResponseBody
   public ResponseEntity<List<DisplayUser>> usersService() {
     return ResponseEntity.ok(
         userRepository.findAllUsers().stream()
@@ -79,7 +77,6 @@ public class MissingFunctionACUsers {
   @GetMapping(
       path = {"access-control/users-admin-fix"},
       consumes = "application/json")
-  @ResponseBody
   public ResponseEntity<List<DisplayUser>> usersFixed(@CurrentUsername String username) {
     var currentUser = userRepository.findByUsername(username);
     if (currentUser != null && currentUser.isAdmin()) {
@@ -95,7 +92,6 @@ public class MissingFunctionACUsers {
       path = {"access-control/users", "access-control/users-admin-fix"},
       consumes = "application/json",
       produces = "application/json")
-  @ResponseBody
   public User addUser(@RequestBody User newUser) {
     try {
       userRepository.save(newUser);

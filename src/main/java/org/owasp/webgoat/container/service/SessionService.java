@@ -10,11 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.owasp.webgoat.container.CurrentUser;
 import org.owasp.webgoat.container.i18n.Messages;
 import org.owasp.webgoat.container.users.WebGoatUser;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class SessionService {
 
@@ -22,7 +21,6 @@ public class SessionService {
   private final Messages messages;
 
   @RequestMapping(path = "/service/enable-security.mvc", produces = "application/json")
-  @ResponseBody
   public String applySecurity(@CurrentUser WebGoatUser user) {
     // webSession.toggleSecurity();
     // restartLessonService.restartLesson(user);
