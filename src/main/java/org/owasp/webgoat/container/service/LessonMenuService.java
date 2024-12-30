@@ -41,9 +41,8 @@ import org.owasp.webgoat.container.users.LessonProgress;
 import org.owasp.webgoat.container.users.UserProgress;
 import org.owasp.webgoat.container.users.UserProgressRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * LessonMenuService class.
@@ -51,7 +50,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author rlawson
  * @version $Id: $Id
  */
-@Controller
+@RestController
 @AllArgsConstructor
 public class LessonMenuService {
 
@@ -70,8 +69,7 @@ public class LessonMenuService {
    *
    * @return a {@link java.util.List} object.
    */
-  @RequestMapping(path = URL_LESSONMENU_MVC, produces = "application/json")
-  public @ResponseBody List<LessonMenuItem> showLeftNav(@CurrentUsername String username) {
+  @RequestMapping(path = URL_LESSONMENU_MVC, produces = "application/json")  public List<LessonMenuItem> showLeftNav(@CurrentUsername String username) {
     // TODO: this looks way too complicated. Either we save it incorrectly or we miss something to
     // easily find out
     // if a lesson if solved or not.
