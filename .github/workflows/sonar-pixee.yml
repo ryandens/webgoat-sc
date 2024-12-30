@@ -15,5 +15,4 @@ jobs:
       - uses: pixee/upload-tool-results-action@v2
         with:
           tool: sonar
-          pixee-api-url: "https://standardchartered.getpixee.com"
           sonar-token: ${{ secrets.SONAR_TOKEN }}
